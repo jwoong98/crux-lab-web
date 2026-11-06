@@ -1,0 +1,1 @@
+var e={SLAB:`슬랩`,VERTICAL:`수직`,OVERHANG:`오버행`,ROOF:`루프`},t={CRIMP:`크림프`,SLOPER:`슬로퍼`,PINCH:`핀치`,POCKET:`포켓`,JUG:`저그`,UNDER_SIDE:`언더·사이드`},n={DYNO:`다이노`,COORDINATION:`코디네이션`,STATIC_TENSION:`정적·텐션`,COMPRESSION:`컴프레션`,HEEL_TOE_HOOK:`힐·토훅`,MANTLE:`맨틀`};export{t as n,n as r,e as t};

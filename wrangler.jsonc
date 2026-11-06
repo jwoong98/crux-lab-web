@@ -1,0 +1,10 @@
+// Cloudflare Workers static assets for the deploy repository (npm run sync:deploy copies this file to ../deploy).
+// The SPA fallback serves index.html for every unknown path, so a refresh or a direct link opens the app router.
+{
+  "name": "crux-lab-web",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
