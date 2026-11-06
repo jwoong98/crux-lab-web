@@ -1,0 +1,1 @@
+import{B as e,j as t}from"./index-Cfpel-Mv.js";import{a as n,r,t as i}from"./session-log-CcJ3pP6z.js";var a=t(),o=[{path:e[`CRUX-LOG-01`],element:(0,a.jsx)(i,{})},{path:e[`CRUX-LOG-03`],element:(0,a.jsx)(n,{})},{path:e[`CRUX-LOG-02`],element:(0,a.jsx)(r,{})}];export{o as routes};

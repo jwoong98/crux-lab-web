@@ -1,1 +1,0 @@
-import{I as e,j as t}from"./index-C_uf_WCF.js";import{a as n,r,t as i}from"./session-log-paJmI5kq.js";var a=t(),o=[{path:e[`CRUX-LOG-01`],element:(0,a.jsx)(i,{})},{path:e[`CRUX-LOG-03`],element:(0,a.jsx)(n,{})},{path:e[`CRUX-LOG-02`],element:(0,a.jsx)(r,{})}];export{o as routes};
