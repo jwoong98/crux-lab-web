@@ -1,0 +1,1 @@
+import{H as e,K as t,M as n,X as r,Y as i}from"./index-BEFNNrO0.js";var a=r(i(),1);function o(){let r=t(),[i,o]=(0,a.useState)(null);if(i!==null)throw i.error;return(0,a.useCallback)(t=>{t instanceof e?r(n.entry({loadFailed:!0}),{replace:!0}):o({error:t})},[r])}export{o as t};

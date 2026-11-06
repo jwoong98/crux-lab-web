@@ -14,9 +14,10 @@ AI-PM-Lab 히스토리와 독립된 크럭스랩 웹앱 빌드 사본입니다. 
 
 ## 데이터 위치
 
-- 모든 기록은 사용자 기기의 브라우저 저장소(IndexedDB)에만 저장됩니다. 서버와 DB는 쓰지 않습니다.
-- 기록을 기기 밖에 보관하는 방법은 앱의 기록 내보내기(플래너 탭 > 기록 내보내기, CSV ZIP 또는 JSON)입니다. 가져오기 기능은 없습니다.
-- 앱은 첫 실행 때 브라우저에 저장소를 지우지 말아 달라고 요청합니다(`navigator.storage.persist()`). 허락 여부는 브라우저가 정합니다.
+- 모든 기록은 Supabase에 익명 로그인 사용자별로 저장됩니다(사용자별 RLS, 로그인 화면 없음). 이 폴더와 Workers에는 기록이 없습니다.
+- 브라우저에는 로그인 토큰만 남습니다. 앱 데이터를 지우면 새 사용자가 되어 옛 기록을 앱에서 열 수 없습니다. 되살리는 방법은 소스 저장소 `app/README.md`의 「익명 로그인의 위험」에 있습니다.
+- 기록을 따로 보관하는 방법은 앱의 기록 내보내기(플래너 탭 > 기록 내보내기, CSV ZIP 또는 JSON)입니다. 가져오기 기능은 없습니다.
+- `dist/`의 JS에는 Supabase 주소와 공개 키(anon key)가 들어 있습니다. 공개해도 되는 키이며 RLS가 각 사용자의 행을 지킵니다. service_role 키는 넣지 않습니다.
 
 ## 최초 1회 설정 (순서대로)
 
@@ -50,6 +51,7 @@ AI-PM-Lab 히스토리와 독립된 크럭스랩 웹앱 빌드 사본입니다. 
    npm run sync:deploy
    ```
    `sync:deploy`는 `dist/`를 통째로 바꾸고(이전 빌드 파일 삭제) `wrangler.jsonc`와 이 README를 복사합니다. git 명령은 실행하지 않습니다.
+   빌드에 Supabase 프로젝트 주소(`https://<프로젝트>.supabase.co`)와 공개 키가 없으면 아무것도 복사하지 않고 멈춥니다. 그때는 `app/.env.local`의 `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`를 확인하고 `npm run build`부터 다시 합니다.
 2. 이 폴더에서:
    ```bash
    git add -A
@@ -58,7 +60,7 @@ AI-PM-Lab 히스토리와 독립된 크럭스랩 웹앱 빌드 사본입니다. 
    ```
 3. Cloudflare 대시보드의 배포 기록에서 성공을 확인하고 배포 주소를 새로고침해 봅니다.
 
-## 나중에 계정 동기화를 붙일 때
+## Supabase
 
-- Supabase를 쓰게 되면 `app/supabase/schema.sql`(아직 연결하지 않은 초안, 사용자별 RLS)을 기준으로 시작합니다. Brick Quest처럼 anon 키로 공개 읽기 정책을 두면 개인 기록이 남에게 보이므로 그 방식은 쓰지 않습니다.
-- Supabase 무료 플랜의 휴면을 막으려면 Brick Quest처럼 UptimeRobot으로 하루 1회 REST를 호출합니다. 정적 호스팅(Workers)만 쓸 때는 휴면이 없어 필요 없습니다.
+- 설치는 `app/supabase/schema.sql`을 Supabase SQL Editor에서 한 번 실행하는 것으로 끝납니다. 익명 로그인(Allow anonymous sign-ins)을 켜야 합니다.
+- Supabase 무료 플랜의 휴면을 막으려고 Brick Quest처럼 UptimeRobot이 `https://<프로젝트>.supabase.co/rest/v1/`을 하루 1회 호출합니다.

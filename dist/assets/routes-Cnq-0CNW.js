@@ -1,1 +1,0 @@
-import{E as e,j as t}from"./index-WiKgSv14.js";import{i as n,s as r,t as i}from"./SessionScreen--4KusniP.js";var a=e(),o=[{path:t[`CRUX-SES-01`],element:(0,a.jsx)(i,{})},{path:t[`CRUX-SES-03`],element:(0,a.jsx)(r,{})},{path:t[`CRUX-SES-04`],element:(0,a.jsx)(n,{})}];export{o as routes};
