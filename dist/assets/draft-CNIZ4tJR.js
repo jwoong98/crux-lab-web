@@ -1,1 +1,0 @@
-import{X as e,Y as t}from"./index-BEFNNrO0.js";var n=e(t(),1),r=new Map,i={get(e){return r.get(e)},set(e,t){r.set(e,t)},clear(e){r.delete(e)}};function a(e,t){let[i,a]=(0,n.useState)(()=>r.has(e)?r.get(e):t);return[i,(0,n.useCallback)(t=>{r.set(e,t),a(t)},[e])]}export{a as n,i as t};
