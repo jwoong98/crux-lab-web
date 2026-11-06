@@ -39,8 +39,9 @@ AI-PM-Lab 히스토리와 독립된 크럭스랩 웹앱 빌드 사본입니다. 
 1. https://dash.cloudflare.com 에 로그인합니다(Brick Quest와 같은 계정이면 `*.luglee.workers.dev` 하위 주소를 씁니다).
 2. **Workers & Pages > Create > Import a repository**에서 위 GitHub 저장소를 고릅니다.
 3. 빌드 설정: Build command는 비워 두고, Deploy command는 `npx wrangler deploy`(기본값), 루트 폴더는 `/`입니다. 설정은 `wrangler.jsonc`가 정합니다.
-4. 배포가 끝나면 주소가 생깁니다. 예상 주소: `https://crux-lab-web.luglee.workers.dev/`
-5. 이후 `main`에 push할 때마다 자동으로 다시 배포됩니다.
+4. 배포가 끝나면 무료 주소가 생깁니다. 예상 주소: `https://crux-lab-web.luglee.workers.dev/`. Worker 이름은 `wrangler.jsonc`의 `name`(`crux-lab-web`)과 같아야 합니다.
+5. 지정 주소: 이 Worker의 **Settings > Domains & Routes > Add > Custom domain**에 `pastcrux.com`을 넣습니다. 도메인은 2026-11-06 Cloudflare Registrar에서 샀고 네임서버가 이미 Cloudflare라 DNS 레코드와 인증서가 자동으로 만들어집니다. `www.pastcrux.com`도 쓰려면 같은 방법으로 하나 더 넣습니다.
+6. 이후 `main`에 push할 때마다 자동으로 다시 배포됩니다.
 
 ## 앱을 고친 뒤 반영하는 절차
 
