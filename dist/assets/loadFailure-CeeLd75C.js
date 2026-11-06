@@ -1,0 +1,1 @@
+import{L as e,Z as t,et as n,q as r,tt as i}from"./index-C_uf_WCF.js";var a=i(n(),1);function o(){let n=t(),[i,o]=(0,a.useState)(null);if(i!==null)throw i.error;return(0,a.useCallback)(t=>{t instanceof r?n(e.entry({loadFailed:!0}),{replace:!0}):o({error:t})},[n])}export{o as t};

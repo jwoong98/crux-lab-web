@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240">
+  <!-- crux-lab empty-report | 4:3 | scheme A -->
+  <rect width="320" height="240" fill="#3B1A0A"/>
+  <!-- empty chart frame with a hangboard waiting for a test -->
+  <rect x="60" y="50" width="200" height="146" rx="12" fill="#F97316" fill-opacity="0.16"/>
+  <rect x="108" y="66" width="104" height="22" rx="6.6" fill="#F8FAFC"/>
+  <rect x="116.3" y="75.2" width="23.6" height="6.2" rx="3.1" fill="#3B1A0A"/>
+  <rect x="148.2" y="75.2" width="23.6" height="7.9" rx="4" fill="#3B1A0A"/>
+  <rect x="180.1" y="75.2" width="23.6" height="6.2" rx="3.1" fill="#3B1A0A"/>
+  <rect x="84" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="102" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="120" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="138" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="156" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="174" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="192" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="210" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="228" y="116" width="10" height="3" rx="1.5" fill="#F8FAFC" fill-opacity="0.4"/>
+  <rect x="80" y="172" width="160" height="4" rx="2" fill="#F8FAFC" fill-opacity="0.6"/>
+  <rect x="98" y="160" width="26" height="12" rx="3" fill="#F97316" fill-opacity="0.5"/>
+  <rect x="146" y="164" width="26" height="8" rx="3" fill="#F97316" fill-opacity="0.35"/>
+  <rect x="194" y="154" width="26" height="18" rx="3" fill="#F97316" fill-opacity="0.5"/>
+  <g transform="translate(288 150) scale(1.2)">
+    <path d="M-12 6C-12-4-6-10 0-10C6-10 12-4 12 6C12 8 11 9 9 9H-9C-11 9-12 8-12 6Z" fill="#F97316"/>
+    <circle cx="0" cy="1" r="1.8" fill="#3B1A0A"/>
+  </g>
+  <circle cx="32" cy="84" r="2.9" fill="#F8FAFC" fill-opacity="0.9"/>
+  <circle cx="38.3" cy="80.4" r="2" fill="#F8FAFC" fill-opacity="0.7"/>
+  <circle cx="26.6" cy="79.5" r="1.6" fill="#F8FAFC" fill-opacity="0.6"/>
+  <circle cx="35.6" cy="89.4" r="1.4" fill="#F8FAFC" fill-opacity="0.5"/>
+  <circle cx="24.8" cy="87.6" r="2.2" fill="#F8FAFC" fill-opacity="0.7"/>
+  <circle cx="42.8" cy="85.8" r="1.3" fill="#F8FAFC" fill-opacity="0.5"/>
+  <circle cx="30.2" cy="75" r="1.1" fill="#F8FAFC" fill-opacity="0.5"/>
+</svg>
