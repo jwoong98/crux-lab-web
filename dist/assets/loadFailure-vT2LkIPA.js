@@ -1,0 +1,1 @@
+import{W as e,Z as t,lt as n,mt as r,pt as i}from"./index-CCcUm90Q.js";var a=r(i(),1);function o(){let r=n(),[i,o]=(0,a.useState)(null);if(i!==null)throw i.error;return(0,a.useCallback)(n=>{n instanceof e?r(t.entry({loadFailed:!0}),{replace:!0}):o({error:n})},[r])}export{o as t};

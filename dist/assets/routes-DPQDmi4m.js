@@ -1,0 +1,1 @@
+import{P as e,Y as t}from"./index-CCcUm90Q.js";import{a as n,c as r,r as i,t as a}from"./onboarding-B5qLCAG6.js";var o=e(),s=[{path:t[`CRUX-ENT-00`],element:(0,o.jsx)(r,{})},{path:t[`CRUX-ENT-01`],element:(0,o.jsx)(n,{})},{path:t[`CRUX-ENT-01a`],element:(0,o.jsx)(i,{})},{path:t[`CRUX-SET-01`],element:(0,o.jsx)(a,{})}];export{s as routes};
