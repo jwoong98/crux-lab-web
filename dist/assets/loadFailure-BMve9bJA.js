@@ -1,0 +1,1 @@
+import{W as e,at as t,lt as n,tt as r,ut as i}from"./index-Wfd17HGO.js";var a=i(n(),1);function o(){let n=t(),[i,o]=(0,a.useState)(null);if(i!==null)throw i.error;return(0,a.useCallback)(t=>{t instanceof r?n(e.entry({loadFailed:!0}),{replace:!0}):o({error:t})},[n])}export{o as t};

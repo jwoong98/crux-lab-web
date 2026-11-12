@@ -1,0 +1,1 @@
+import{P as e,U as t}from"./index-Wfd17HGO.js";import{i as n,s as r,t as i}from"./session-DQEQOd6y.js";var a=e(),o=[{path:t[`CRUX-SES-01`],element:(0,a.jsx)(i,{})},{path:t[`CRUX-SES-03`],element:(0,a.jsx)(r,{})},{path:t[`CRUX-SES-04`],element:(0,a.jsx)(n,{})}];export{o as routes};

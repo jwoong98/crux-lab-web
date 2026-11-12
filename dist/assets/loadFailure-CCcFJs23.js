@@ -1,1 +1,0 @@
-import{V as e,Z as t,at as n,ot as r,tt as i}from"./index-Cfpel-Mv.js";var a=r(n(),1);function o(){let n=i(),[r,o]=(0,a.useState)(null);if(r!==null)throw r.error;return(0,a.useCallback)(r=>{r instanceof t?n(e.entry({loadFailed:!0}),{replace:!0}):o({error:r})},[n])}export{o as t};

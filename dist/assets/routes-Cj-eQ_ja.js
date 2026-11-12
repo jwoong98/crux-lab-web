@@ -1,1 +1,0 @@
-import{B as e,j as t}from"./index-Cfpel-Mv.js";import{i as n,s as r,t as i}from"./session-TgjZhU68.js";var a=t(),o=[{path:e[`CRUX-SES-01`],element:(0,a.jsx)(i,{})},{path:e[`CRUX-SES-03`],element:(0,a.jsx)(r,{})},{path:e[`CRUX-SES-04`],element:(0,a.jsx)(n,{})}];export{o as routes};
