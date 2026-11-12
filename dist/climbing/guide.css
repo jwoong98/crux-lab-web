@@ -7,6 +7,8 @@
   --text: #f8fafc;
   --muted: #9ca3af;
   --primary: #f97316;
+  --on-primary: #ffffff;
+  --primary-press: #ea580c;
   --link: #fb923c;
   --focus: #fb923c;
   --radius-sm: 8px;
@@ -311,6 +313,153 @@ strong {
   line-height: 1.5;
 }
 
+/* App promo: border 2px + padding 18px puts the text on the same 20px inset as .card. */
+.app-promo {
+  margin-top: 32px;
+  padding: 22px 18px;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.app-promo-title {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.app-promo-title::before {
+  content: '';
+  flex: none;
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg) url('/icon.svg') center / cover no-repeat;
+}
+
+.app-promo-lead {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.app-promo-lead + .app-promo-lead {
+  margin-top: 8px;
+}
+
+.app-promo-points {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One point: check mark in the first column, name and text stacked in the second. */
+.app-promo-points li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.app-promo-points li::before,
+.app-promo-points li::after {
+  content: '';
+  grid-area: 1 / 1;
+}
+
+.app-promo-points li::before {
+  width: 22px;
+  height: 22px;
+  margin-top: calc((1.5em - 22px) / 2);
+  border-radius: var(--radius-full);
+  background: var(--bg);
+}
+
+.app-promo-points li::after {
+  justify-self: center;
+  width: 6px;
+  height: 10px;
+  margin-top: calc((1.5em - 22px) / 2 + 4px);
+  border: solid var(--primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.app-promo-point-name,
+.app-promo-point-text {
+  grid-column: 2;
+}
+
+.app-promo-point-name {
+  font-weight: 700;
+}
+
+.app-promo-point-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.app-promo-note {
+  margin: 20px 0 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--surface-2);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* The border has the face color: it keeps the 52px box and stays visible when the system forces its own colors. */
+.app-promo-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 10px 18px;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-promo-button::after {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-left: 10px;
+  border: solid currentColor;
+  border-width: 2px 2px 0 0;
+  transform: rotate(45deg);
+}
+
+.app-promo-button:active {
+  border-color: var(--primary-press);
+  background: var(--primary-press);
+}
+
+.app-promo-button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
 .site-footer {
   padding-top: 32px;
   padding-bottom: 48px;
@@ -320,6 +469,20 @@ strong {
 
 .site-footer a {
   color: var(--muted);
+}
+
+.analytics-notice {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (hover: hover) {
+  .app-promo-button:hover {
+    border-color: var(--primary-press);
+    background: var(--primary-press);
+  }
 }
 
 @media (max-width: 420px) {
@@ -339,5 +502,22 @@ strong {
 
   .card {
     padding: 32px 28px;
+  }
+
+  .app-promo {
+    padding: 30px 26px;
+  }
+
+  .app-promo-lead,
+  .app-promo-points li {
+    font-size: 17px;
+  }
+
+  .app-promo-point-text {
+    font-size: 16px;
+  }
+
+  .app-promo-note {
+    font-size: 15px;
   }
 }

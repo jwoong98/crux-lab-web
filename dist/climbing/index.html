@@ -3,6 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (location.hostname === 'pastcrux.com') {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-TPVFQMNH4D', { allow_google_signals: false, allow_ad_personalization_signals: false });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TPVFQMNH4D';
+      document.head.appendChild(s);
+    }
+  </script>
   <title>클라이밍 용어 17가지, 벽 각도부터 무브까지 | 크럭스랩</title>
   <meta name="description" content="슬랩, 오버행, 크림프, 다이노처럼 암장에서 자주 듣는 클라이밍 용어 17가지의 뜻과 요령이에요. 벽 각도 4개, 홀드 7개, 무브 6개로 나눠 하나씩 살펴봐요.">
   <link rel="canonical" href="https://pastcrux.com/climbing/">
@@ -81,9 +93,21 @@
         </ul>
       </section>
     </article>
+    <aside class="app-promo" aria-label="크럭스랩 앱 안내">
+      <p class="app-promo-title">크럭스랩에서 내 약점을 찾아 훈련해 보세요</p>
+      <p class="app-promo-lead">크럭스랩은 볼더러를 위한 트레이닝 기록 앱이에요. 감 대신 기록으로 어디가 약한지 보고, 그날 할 훈련을 골라요.</p>
+      <ul class="app-promo-points">
+        <li><span class="app-promo-point-name">약한 스타일 찾기</span> <span class="app-promo-point-text">시도마다 각도, 홀드, 무브를 붙이면 스타일별 완등률을 보여 줘요.</span></li>
+        <li><span class="app-promo-point-name">오늘의 세션 고르기</span> <span class="app-promo-point-text">그날 컨디션을 보고 한계, 약점, 놀이 세션 중 하나를 골라 진행해요.</span></li>
+        <li><span class="app-promo-point-name">숫자로 보는 진척</span> <span class="app-promo-point-text">손가락 힘처럼 천천히 느는 능력도 기록으로 확인해요.</span></li>
+      </ul>
+      <p class="app-promo-note">회원가입 없이 바로 시작해요.</p>
+      <a class="app-promo-button" href="/?from=climbing-guide">지금 내 실력 올리러 가기</a>
+    </aside>
   </main>
   <footer class="site-footer">
     <a href="/">크럭스랩 홈</a>
+    <p class="analytics-notice">방문 통계를 위해 Google Analytics 쿠키를 써요.</p>
   </footer>
 </body>
 </html>
