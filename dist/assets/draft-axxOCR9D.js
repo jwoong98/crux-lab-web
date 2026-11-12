@@ -1,0 +1,1 @@
+import{mt as e,pt as t}from"./index-B7S_pHcs.js";var n=e(t(),1),r=new Map,i={get(e){return r.get(e)},set(e,t){r.set(e,t)},clear(e){r.delete(e)}};function a(e,t){let[i,a]=(0,n.useState)(()=>r.has(e)?r.get(e):t);return[i,(0,n.useCallback)(t=>{r.set(e,t),a(t)},[e])]}export{a as n,i as t};
