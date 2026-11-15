@@ -159,6 +159,16 @@ strong {
   font-weight: 700;
 }
 
+.card-cover .ad-disclosure {
+  padding: 10px 14px;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bg);
+  color: var(--link);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
 .card-img {
   width: 100%;
   margin: 16px 0;

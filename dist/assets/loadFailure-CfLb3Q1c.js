@@ -1,0 +1,1 @@
+import{Ot as e,Tt as t,Z as n,nt as r,vt as i}from"./overlay-C4qL5U2_.js";var a=e(t(),1);function o(){let e=i(),[t,o]=(0,a.useState)(null);if(t!==null)throw t.error;return(0,a.useCallback)(t=>{t instanceof n?e(r.entry({loadFailed:!0}),{replace:!0}):o({error:t})},[e])}export{o as t};

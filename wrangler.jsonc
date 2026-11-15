@@ -1,10 +1,23 @@
-// Cloudflare Workers static assets for the deploy repository (npm run sync:deploy copies this file to ../deploy).
+// Cloudflare Worker crux-lab-web for the deploy repository (npm run sync:deploy copies this file to ../deploy).
 // The SPA fallback serves index.html for every unknown path, so a refresh or a direct link opens the app router.
+// worker/index.mjs runs first for the climbing guide, sitemap.xml and robots.txt (PLAN DEV-050): it answers the static
+// assets as before while GUIDE_FROM_KV is "false", and KV first when it is "true" (DEC-018 rollback: set it back to "false").
+// GUIDE_STATIC_FALLBACK "true" answers the static assets when KV has no page or fails; DEV-060 sets it to "false" when the
+// static /climbing HTML leaves the deploy copy. GUIDE_KV_ID is a placeholder: sync-deploy puts CF_GUIDE_KV_ID from
+// app/.env.local in the deploy copy and copies worker/ next to it (DEV-052). The Worker uses no secret.
 {
   "name": "crux-lab-web",
+  "main": "worker/index.mjs",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/climbing", "/climbing/*", "/sitemap.xml", "/robots.txt"]
+  },
+  "kv_namespaces": [{ "binding": "GUIDE_KV", "id": "e017a110906143e7a6d41c5a76cfabf2" }],
+  "vars": {
+    "GUIDE_FROM_KV": "false",
+    "GUIDE_STATIC_FALLBACK": "true"
   }
 }

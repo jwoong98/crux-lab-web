@@ -1,0 +1,7 @@
+# CMS static responses (PLAN DEV-040, DEC-010, cms_detailed_plan.md 2️⃣ 77 and 78). The CMS Worker sets the same
+# X-Robots-Tag on its own /api/* answers (DEV-051).
+/*
+  X-Robots-Tag: noindex, nofollow
+  Content-Security-Policy: default-src 'self'; connect-src 'self' https://jbvvlommflfwaybpepyq.supabase.co; img-src 'self' https://pastcrux.com https://jbvvlommflfwaybpepyq.supabase.co data: blob:; style-src 'self' https://pastcrux.com https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; frame-src 'self'; object-src 'none'; base-uri 'none'
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
