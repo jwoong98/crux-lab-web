@@ -56,11 +56,12 @@ AI-PM-Lab 히스토리와 독립된 크럭스랩 웹앱 빌드 사본입니다. 
    npm run build
    npm run sync:deploy
    ```
-   `sync:deploy`는 `dist/`, `worker/`, `cms/`의 빌드와 Worker 파일을 통째로 바꾸고(이전 파일 삭제) 두 `wrangler.jsonc`와 두 README를 씁니다. `.git`처럼 sync가 만들지 않은 것은 둡니다. git 명령은 실행하지 않습니다.
-   다음 경우에는 아무것도 복사하지 않고 멈춥니다(종료 코드 1). 메시지대로 고친 뒤 `npm run build`부터 다시 합니다.
+   `sync:deploy`는 `dist/`의 `dist/assets/` 밖과 `worker/`, `cms/`의 빌드와 Worker 파일을 통째로 바꾸고(이전 파일 삭제), `dist/assets/`의 이전 파일은 남깁니다(같은 이름은 새 빌드 것으로 덮음). 배포 전에 앱을 열어 둔 사용자가 옛 이름의 코드 파일을 계속 받게 하려는 것입니다. 두 `wrangler.jsonc`와 두 README도 씁니다. `.git`처럼 sync가 만들지 않은 것은 둡니다. git 명령은 실행하지 않습니다.
+   다음 경우에는 아무것도 복사하지 않고 멈춥니다(종료 코드 1). 메시지대로 고친 뒤 `npm run build`부터 다시 합니다. 파일 수 상한 항목만 빌드 없이 `npm run sync:deploy`부터 다시 합니다.
    - 빌드에 Supabase 프로젝트 주소(`https://<프로젝트>.supabase.co`)와 공개 키가 없음: `app/.env.local`의 `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`를 확인합니다.
    - `app/.env.local`에 `CF_GUIDE_KV_ID`나 Supabase 두 값이 없음, CMS 빌드(`dist-cms/index.html`)가 없음.
    - 옮기거나 쓸 파일에 `sb_secret_` 키나 role이 service_role인 JWT가 있음. 메시지에는 파일 이름만 나옵니다.
+   - 동기화 뒤 `dist/` 파일이 15,000개를 넘음(남긴 이전 파일 포함, Cloudflare 무료 한도 20,000개 전에 멈춤): 이 폴더의 `dist/assets/`에서 옛 파일을 지웁니다. 꼭 남길 것은 지금 운영 중인 배포가 쓰는 파일(`dist/index.html`이 가리키는 파일과 그 파일들이 불러오는 파일)입니다. 그 밖의 옛 파일을 얼마나 남길지는 PM이 정하고, 지운 파일은 그 파일을 쓰던 배포 때 연 화면이 다시 받지 못합니다. 언제 더한 파일인지는 이 폴더에서 `git log --name-status -- dist/assets`로 봅니다. 그다음 빌드 없이 소스 저장소에서 `npm run sync:deploy`를 다시 실행하고 push합니다.
    - 그 밖의 경우는 소스 저장소 `app/README.md` 「배포」에 있습니다.
 2. 이 폴더에서:
    ```bash
@@ -76,7 +77,7 @@ AI-PM-Lab 히스토리와 독립된 크럭스랩 웹앱 빌드 사본입니다. 
 
 - `GUIDE_FROM_KV`(기본 `"false"`): `"false"`면 `/climbing` 응답이 정적 자산 그대로이고, `"true"`면 KV를 먼저 읽습니다(주소마다 60초 캐시). KV와 정적 본문 비교가 통과한 뒤에 켭니다. 되돌리기: `"false"`로 바꿔 push하면 약 60초 뒤 정적 자산이 나갑니다.
 - `GUIDE_STATIC_FALLBACK`(기본 `"true"`): `"true"`면 KV에 없는 페이지와 KV 오류에 정적 자산을 주고, `"false"`면 404나 503을 줍니다. 정적 카드뉴스 HTML을 배포에서 뺄 때 `"false"`가 됩니다.
-- 배포 전체 되돌리기: 이 저장소를 앞 커밋으로 되돌려(`git revert`) push합니다.
+- 배포 전체 되돌리기: 되돌린 소스(AI-PM-Lab 커밋)로 다시 빌드해 `sync:deploy`와 push를 합니다. 이 저장소의 `git revert`나 Cloudflare 대시보드의 이전 버전 되돌리기는 쓰지 않습니다. 그 뒤 배포의 코드 파일이 빠져, 그 사이 새 화면을 연 사용자가 그 파일을 받지 못합니다.
 - Cloudflare는 무료 플랜 기준입니다. `/climbing/*` 요청은 그림과 `guide.css`까지 Worker 요청(하루 10만)으로 셉니다.
 
 ## Supabase

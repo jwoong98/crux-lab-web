@@ -40,7 +40,7 @@
 ## 스위치와 되돌리기
 
 - `PRIVACY_PUBLISHED`(`wrangler.jsonc` vars, 기본 `"false"`): `"true"`면 게시하는 카드뉴스 페이지 푸터에 처리방침 링크(/privacy/)가 들어갑니다. 처리방침을 게시한 뒤(O-24) 정적 빌드의 같은 이름 스위치와 함께 켭니다. `PRIVACY_PUBLISHED=true npm run guide:build`로 정적 카드뉴스 HTML을 다시 만들고, 같은 커밋에서 소스 `app/wrangler.cms.jsonc`의 값을 바꾼 뒤 빌드, sync, push하고 CMS에서 다시 반영합니다(앱 `README.md` 배포 순서 9단계). 되돌릴 때는 두 쪽을 함께 끄고 같은 절차를 밟습니다.
-- CMS 배포가 잘못되면 이 저장소를 앞 커밋으로 되돌려(`git revert`) push합니다. 공개 카드뉴스가 잘못 나가면 공개 Worker의 `GUIDE_FROM_KV`를 `"false"`로 되돌립니다(저장소 루트 `README.md` 「스위치와 되돌리기」).
+- CMS 배포가 잘못되면 되돌린 소스(AI-PM-Lab 커밋)로 다시 빌드해 `sync:deploy`와 push를 합니다. 이 저장소의 `git revert`는 쓰지 않습니다. 같은 저장소라 루트의 공개 웹앱 배포 사본까지 되돌아가 그 뒤 배포의 웹 코드 파일이 빠지고, 그 사이 새 화면을 연 사용자가 그 파일을 받지 못합니다. 공개 카드뉴스가 잘못 나가면 공개 Worker의 `GUIDE_FROM_KV`를 `"false"`로 되돌립니다(저장소 루트 `README.md` 「스위치와 되돌리기」).
 
 ## 무료 플랜 한도
 

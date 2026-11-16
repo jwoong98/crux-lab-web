@@ -1,15 +1,8 @@
 // Public Worker crux-lab-web (PLAN DEV-050, DEC-008, DEC-018, DEC-020, DEC-028, DEC-038 4 and 5). wrangler.jsonc runs it
-// first for /climbing, /climbing/*, /sitemap.xml and /robots.txt. Any other path is the static assets with the SPA fallback,
-// and reaches the Worker only as a non-navigation request that no asset matches (the /assets/ rule below).
+// first for /climbing, /climbing/*, /sitemap.xml and /robots.txt; everything else is the static assets with the SPA fallback.
 //
 // - GET and HEAD only; any other method goes to the static assets.
-// - /assets/, whatever GUIDE_FROM_KV says and with or without X-Guide-Source: kv (this runs before either is read): a file
-//   the static assets do not have (a 404 or the SPA index.html) answers 404 with no-store, never the index.html under the
-//   1-year immutable of _headers; a file they have is their answer unchanged. Only a non-navigation request that no asset
-//   matches reaches the Worker here (assets_navigation_prefers_asset_serving, compatibility date 2025-04-01 and later); a
-//   navigation gets the SPA index.html without the Worker.
-// - Outside /assets/ (above), GUIDE_FROM_KV is not "true" and no X-Guide-Source: kv header: the static assets, as before
-//   this Worker (rollback switch).
+// - GUIDE_FROM_KV is not "true" and no X-Guide-Source: kv header: the static assets, as before this Worker (rollback switch).
 // - X-Guide-Source: kv reads KV whatever the switch says and never reads or writes the cache (O-21 byte comparison).
 //   It never falls back to the static assets (DEC-061 1): a missing key answers 404 with X-Guide-Source: kv-miss and a KV
 //   error answers 503, so an empty or partial KV cannot look like the static site.
@@ -66,16 +59,9 @@ const kvMiss = () =>
     headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store', 'x-guide-source': 'kv-miss' },
   });
 
-/** A file under /assets/ the static assets do not have, such as a hashed bundle an earlier deploy removed. Never cached. */
-const assetNotFound = () =>
-  new Response('이 주소에는 파일이 없어요.\n', {
-    status: 404,
-    headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' },
-  });
-
 const ok = (body, type) => new Response(body, { headers: { 'content-type': type, 'cache-control': CACHE_CONTROL } });
 
-/** The assets do not have this image or /assets/ file: a 404, or the SPA index.html they answer for any unknown path (DEC-061 3). */
+/** The assets do not have this image: a 404, or the SPA index.html they answer for any unknown path (DEC-061 3). */
 const isStaticMiss = (asset) => asset.status === 404 || (asset.headers.get('content-type') ?? '').startsWith('text/html');
 
 /** HEAD gets the same status and headers without the body. */
@@ -110,10 +96,6 @@ export default {
    */
   async fetch(request, env, ctx) {
     if (request.method !== 'GET' && request.method !== 'HEAD') return env.ASSETS.fetch(request);
-    if (new URL(request.url).pathname.startsWith('/assets/')) {
-      const asset = await env.ASSETS.fetch(request);
-      return isStaticMiss(asset) ? forMethod(request, assetNotFound()) : asset;
-    }
     const probe = request.headers.get('X-Guide-Source') === 'kv';
     if (env.GUIDE_FROM_KV !== 'true' && !probe) return env.ASSETS.fetch(request);
 
