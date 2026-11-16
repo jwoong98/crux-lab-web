@@ -1,0 +1,1 @@
+import{U as e,et as t}from"./overlay-CvjXL50b.js";import{a as n,r,s as i,t as a}from"./onboarding-B2ONAPsR.js";var o=e(),s=[{path:t[`CRUX-ENT-00`],element:(0,o.jsx)(n,{})},{path:t[`CRUX-ENT-01`],element:(0,o.jsx)(i,{})},{path:t[`CRUX-ENT-01a`],element:(0,o.jsx)(r,{})},{path:t[`CRUX-SET-01`],element:(0,o.jsx)(a,{})}];export{s as routes};

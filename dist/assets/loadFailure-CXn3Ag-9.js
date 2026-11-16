@@ -1,0 +1,1 @@
+import{Et as e,Z as t,kt as n,rt as r,yt as i}from"./overlay-CvjXL50b.js";var a=n(e(),1);function o(){let e=i(),[n,o]=(0,a.useState)(null);if(n!==null)throw n.error;return(0,a.useCallback)(n=>{n instanceof t?e(r.entry({loadFailed:!0}),{replace:!0}):o({error:n})},[e])}export{o as t};
