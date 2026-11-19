@@ -1,0 +1,1 @@
+import{W as e,tt as t}from"./overlay-xdcp5G9t.js";import{a as n,r,t as i}from"./session-log-ByPA-5iO.js";var a=e(),o=[{path:t[`CRUX-LOG-01`],element:(0,a.jsx)(i,{})},{path:t[`CRUX-LOG-03`],element:(0,a.jsx)(n,{})},{path:t[`CRUX-LOG-02`],element:(0,a.jsx)(r,{})}];export{o as routes};

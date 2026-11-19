@@ -1,0 +1,1 @@
+import{At as e,Dt as t,Q as n,bt as r,it as i}from"./overlay-xdcp5G9t.js";var a=e(t(),1);function o(){let e=r(),[t,o]=(0,a.useState)(null);if(t!==null)throw t.error;return(0,a.useCallback)(t=>{t instanceof n?e(i.entry({loadFailed:!0}),{replace:!0}):o({error:t})},[e])}export{o as t};
