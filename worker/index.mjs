@@ -1,7 +1,15 @@
 // Public Worker crux-lab-web (PLAN DEV-050, DEC-008, DEC-018, DEC-020, DEC-028, DEC-038 4 and 5). wrangler.jsonc runs it
-// first for /climbing, /climbing/*, /sitemap.xml and /robots.txt; everything else is the static assets with the SPA fallback.
+// first for /climbing, /climbing/*, /sitemap.xml, /robots.txt and /app-update/*; everything else is the static assets with
+// the SPA fallback.
 //
 // - GET and HEAD only; any other method goes to the static assets.
+// - /app-update/* (live update, 작업 20261119-103922_app-live-update DESIGN 5-1, DEC-005), whatever GUIDE_FROM_KV says: the
+//   static assets with Cache-Control no-store, or public, max-age=31536000, immutable under /app-update/files/ (content
+//   addressed). A 404 or an HTML answer (the SPA index.html for an unknown path) answers 404 no-store, so a missing
+//   manifest or file never looks like a 200. The content addressed files have no extension, so the assets serve them as
+//   application/octet-stream and only the SPA fallback is text/html. These two cache headers are set here only:
+//   public/_headers keeps the /assets/* rule alone (src/app/assetHeaders.test.ts), and its rules may not reach an answer
+//   that passes through the Worker.
 // - GUIDE_FROM_KV is not "true" and no X-Guide-Source: kv header: the static assets, as before this Worker (rollback switch).
 // - X-Guide-Source: kv reads KV whatever the switch says and never reads or writes the cache (O-21 byte comparison).
 //   It never falls back to the static assets (DEC-061 1): a missing key answers 404 with X-Guide-Source: kv-miss and a KV
@@ -18,6 +26,9 @@
 import { fileKey, goneKey, imageKey, pageKey } from './kv-keys.mjs';
 
 const CACHE_CONTROL = 'public, max-age=60';
+const APP_UPDATE_PREFIX = '/app-update/';
+const APP_UPDATE_FILES_PREFIX = '/app-update/files/';
+const IMMUTABLE = 'public, max-age=31536000, immutable';
 const HTML = 'text/html; charset=utf-8';
 const IMAGE_PREFIX = '/climbing/images/';
 const FILE_TYPES = { '/sitemap.xml': 'application/xml; charset=utf-8', '/robots.txt': 'text/plain; charset=utf-8' };
@@ -68,6 +79,23 @@ const isStaticMiss = (asset) => asset.status === 404 || (asset.headers.get('cont
 const forMethod = (request, response) =>
   request.method === 'HEAD' ? new Response(null, { status: response.status, headers: response.headers }) : response;
 
+/** No such app update file (DEC-005): never the SPA 200, never cached. */
+const appUpdateMissing = () =>
+  new Response('Not Found\n', { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } });
+
+/**
+ * An /app-update/ path: the static answer with the cache rule of its kind, on a copy because the runtime's answer has
+ * immutable headers, or 404 no-store when the assets do not have it.
+ * @returns {Promise<Response>}
+ */
+async function appUpdate(request, env, path) {
+  const asset = await env.ASSETS.fetch(request);
+  if (isStaticMiss(asset)) return forMethod(request, appUpdateMissing());
+  const headers = new Headers(asset.headers);
+  headers.set('cache-control', path.startsWith(APP_UPDATE_FILES_PREFIX) ? IMMUTABLE : 'no-store');
+  return new Response(asset.body, { status: asset.status, statusText: asset.statusText, headers });
+}
+
 /**
  * The KV answer for path (a body, or the 404 of a gone marker), or null when KV has no value for it.
  * @returns {Promise<Response | null>}
@@ -96,6 +124,8 @@ export default {
    */
   async fetch(request, env, ctx) {
     if (request.method !== 'GET' && request.method !== 'HEAD') return env.ASSETS.fetch(request);
+    const pathname = new URL(request.url).pathname;
+    if (pathname.startsWith(APP_UPDATE_PREFIX)) return appUpdate(request, env, pathname);
     const probe = request.headers.get('X-Guide-Source') === 'kv';
     if (env.GUIDE_FROM_KV !== 'true' && !probe) return env.ASSETS.fetch(request);
 

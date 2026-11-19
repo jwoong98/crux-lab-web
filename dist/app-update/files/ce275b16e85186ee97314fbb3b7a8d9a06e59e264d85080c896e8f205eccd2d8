@@ -1,0 +1,1 @@
+var e=null;function t(t){e=t}function n(){if(e)return e;throw Error(`the video ports are not configured`)}export{n,t};

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- crux-lab test-weighted-pullup | 1:1 | scheme A -->
+  <rect width="96" height="96" fill="#3B1A0A"/>
+  <!-- pull-up bar, chain, dip belt and plate -->
+  <rect x="14" y="8" width="6" height="12" fill="#F97316"/>
+  <rect x="76" y="8" width="6" height="12" fill="#F97316"/>
+  <rect x="10" y="18" width="76" height="7" rx="3.5" fill="#F8FAFC"/>
+  <circle cx="48" cy="31" r="2.6" fill="#F8FAFC"/>
+  <circle cx="48" cy="37" r="2.6" fill="#F8FAFC"/>
+  <circle cx="48" cy="43" r="2.6" fill="#F8FAFC"/>
+  <path d="M30 48H66L60 58H36Z" fill="#F97316"/>
+  <circle cx="48" cy="75" r="17" fill="#F97316"/>
+  <circle cx="48" cy="75" r="11.2" fill="#3B1A0A" fill-opacity="0.3"/>
+  <circle cx="48" cy="75" r="3.4" fill="#3B1A0A"/>
+</svg>

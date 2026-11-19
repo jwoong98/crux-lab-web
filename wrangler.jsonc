@@ -5,6 +5,9 @@
 // GUIDE_STATIC_FALLBACK "true" answers the static assets when KV has no page or fails; DEV-060 sets it to "false" when the
 // static /climbing HTML leaves the deploy copy. GUIDE_KV_ID is a placeholder: sync-deploy puts CF_GUIDE_KV_ID from
 // app/.env.local in the deploy copy and copies worker/ next to it (DEV-052). The Worker uses no secret.
+// It also runs first for /app-update/* (live update, 작업 20261119-103922_app-live-update DESIGN 5-1, DEC-005): the app
+// bundle manifest answers no-store, the content addressed files a year immutable, and a missing one 404 no-store instead of
+// the SPA index.html. Every app start asks for the manifest once, so it counts toward the Worker requests of the free plan.
 {
   "name": "crux-lab-web",
   "main": "worker/index.mjs",
@@ -13,7 +16,7 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/climbing", "/climbing/*", "/sitemap.xml", "/robots.txt"]
+    "run_worker_first": ["/climbing", "/climbing/*", "/sitemap.xml", "/robots.txt", "/app-update/*"]
   },
   "kv_namespaces": [{ "binding": "GUIDE_KV", "id": "e017a110906143e7a6d41c5a76cfabf2" }],
   "vars": {

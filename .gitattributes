@@ -1,0 +1,3 @@
+# Written by npm run sync:deploy (app/scripts/sync-deploy.mjs). Do not edit here.
+# The app checks every live update file by its size and SHA-256, so git must keep the bytes (no CRLF to LF).
+dist/app-update/** -text

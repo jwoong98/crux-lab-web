@@ -1,0 +1,1 @@
+function e(e){return e.VITE_PRIVACY_PUBLISHED===`true`}function t(e){return e.VITE_APP_INSTALL_SHEET===`true`}function n(e){let t=e=>e?.trim()||null;return{android:t(e.VITE_STORE_URL_ANDROID),ios:t(e.VITE_STORE_URL_IOS)}}export{e as n,n as r,t};
