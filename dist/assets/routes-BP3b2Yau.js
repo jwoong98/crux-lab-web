@@ -1,0 +1,1 @@
+import{W as e,tt as t}from"./overlay-KRg6uCa5.js";import{i as n,s as r,t as i}from"./session-CVK2JLeI.js";var a=e(),o=[{path:t[`CRUX-SES-01`],element:(0,a.jsx)(i,{})},{path:t[`CRUX-SES-03`],element:(0,a.jsx)(r,{})},{path:t[`CRUX-SES-04`],element:(0,a.jsx)(n,{})}];export{o as routes};
