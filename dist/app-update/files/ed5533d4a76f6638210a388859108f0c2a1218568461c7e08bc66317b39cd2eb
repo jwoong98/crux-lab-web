@@ -1,0 +1,1 @@
+import{A as e,g as t}from"./overlay-DCRar9Su.js";import{a as n,r,s as i,t as a}from"./onboarding-CpD5vzkT.js";var o=t(),s=[{path:e[`CRUX-ENT-00`],element:(0,o.jsx)(n,{})},{path:e[`CRUX-ENT-01`],element:(0,o.jsx)(i,{})},{path:e[`CRUX-ENT-01a`],element:(0,o.jsx)(r,{})},{path:e[`CRUX-SET-01`],element:(0,o.jsx)(a,{})}];export{s as routes};
